@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Specs</h1>
+    <form action="" method="post" novalidate>
+        <table>
+            <tr>
+                <td>{{ form.kml.label }}</td>
+                <td>{{ form.kml(size=32) }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.tanktStrl.label }}</td> 
+                <td>{{ form.tanktStrl(size=32) }}</td>
+            </tr>
+        </table>
+        {{ form.submit(size=32) }}
+    </form>
+{% endblock %}
