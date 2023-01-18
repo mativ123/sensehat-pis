@@ -1,6 +1,6 @@
 from app import app, db
-from app.models import Save
+from app.models import Pickle
 
 @app.shell_context_processor
 def make_shell_context():
-    return {'db': db, 'Save': Save}
+    return {'db': db, 'Pickle': Pickle}

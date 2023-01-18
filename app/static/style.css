@@ -15,10 +15,6 @@ html, body {
 
 
 #block, .flash {
-    width: 50%;
-    margin-left: 25%;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
     margin-top: 0;
     margin-bottom: 0;
     background-color: whitesmoke;
@@ -66,4 +62,11 @@ button:hover, input[type="button"]:hover, input[type="submit"]:hover, select:hov
     background-color: #caffc7;
     padding: 5px;
     border-radius: 2px;
+}
+
+#dashboard {
+    display: flex;
+    justify-content: space-evenly;
+    border: medium solid black;
+    font-size: 1.5em;
 }

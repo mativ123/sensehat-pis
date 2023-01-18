@@ -13,8 +13,10 @@ def index():
 def specs():
     form = Specs()
     if form.validate_on_submit():
+        print('din')
         pick = Pickle(kml=form.kml.data, tankstrl=form.tanktStrl.data)
         db.session.add(pick)
         db.session.commit()
+        print('mor')
         return redirect(url_for('index'))
     return render_template('specs.html', title="Specefikationer", form=form)
