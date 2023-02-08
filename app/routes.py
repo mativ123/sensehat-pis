@@ -3,6 +3,9 @@ from app import app, db
 from app.forms import Specs
 from app.models import Pickle
 from werkzeug.urls import url_parse
+from sense_hat import SenseHat
+import math
+sense = SenseHat()
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -20,3 +23,12 @@ def specs():
         print('mor')
         return redirect(url_for('index'))
     return render_template('specs.html', title="Specefikationer", form=form)
+
+@app.route('/api/acc', methods=['GET', 'POST'])
+def acc():
+    acc = sense.get_accelerometer_raw()
+    x = acc['x']
+
+    x=round(x, 0)
+
+    return jsonify({"acc": x})

@@ -3,9 +3,47 @@
 {% block content %}
     <h1>Speed o meter</h1>
     <div id="dashboard">
-        <p>km/t</p>
-        <p>km kørt</p>
-        <p>tanken</p>
-        <p>acceleration</p>
+        <p id="kmt">km/t</p>
+        <p id="km">km kørt</p>
+        <p id="tank">tanken</p>
+        <p id="acc">acceleration</p>
     </div>
+    <script>
+        var a = 1
+        var fuel = 20
+        var kml = 22
+        var v = 0
+        var d = 0
+        var t = 5
+
+        function main() {
+            fetch('/api/acc', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: {"din": "mor"},
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data["acc"]);
+                    v += data["acc"] * 9.82;
+                    v_km_per_s = v / 1000;
+                    d += v_km_per_s;
+                    fuel_consumption = v_km_per_s / kml;
+                    t -= fuel_consumption;
+
+                    document.getElementById("kmt").innerHTML = math.round(v);
+                    document.getElementById("km").innerHTML = math.round(d);
+                    document.getElementById("tank").innerHTML = math.round(t);
+                    document.getElementById("acc").innerHTML = math.round(data["acc"] * 9.82);
+                    console.log(`fart[m/s]: ${v}, km kørt: ${d}, tanken[l]: ${t}`);
+                    if(t > 0) { 
+                        setTimeout(main, 1000);
+                    } else {
+                        console.log("Tanken er tom");
+                    }
+                });
+        }
+
+        main();
+    </script>
 {% endblock %}
